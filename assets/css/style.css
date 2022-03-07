@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;700&display=swap');
+
+body {
+    font-family: 'League+Spartan', sans-serif;
+    align-items: center;
+  }
+
+.bg-barra{
+    background-color: #2c2c2c;
+}
+
+.tam-text1{
+    font-family: 'League+Spartan', sans-serif;
+    font-weight: 400;
+    font-size: x-large;
+    color: aliceblue;
+}
+
+.tam-text2{
+    font-family: 'League+Spartan', sans-serif;
+    font-weight: 700;
+    font-size:xx-large;
+    color: #2c2c2c;
+}
+
+.tam-text3{
+    font-family: 'League+Spartan', sans-serif;
+    font-weight:300;
+    font-size:medium;
+    color: #2c2c2c;
+}
+
+.color-text3{
+    color: #fff;
+    font-weight: 300;
+}
+
+.color-fond-footer{
+    background-color: #2c2c2c;
+    color: #fff;
+
+}
+
+@media (max-width: 512px) {
+   
+    .tam-text1{
+        font-size:larger;
+    }
+
+    .tam-text2{
+        font-size:larger;
+    }
+
+    .tam-text3{
+        font-size:smaller;
+    }
+
+}
