@@ -1,3 +1,9 @@
+function limpiainput() {
+    $("#buscaheroe").val("");
+}
+let carcater = document.querySelector("#buscaheroe");
+carcater.setAttribute("maxlength", "3");
+
 const btBuscar = document.querySelector('#btbuscar');
 const buscaHeroe = document.querySelector('#buscaheroe');
 
@@ -7,11 +13,27 @@ btBuscar.addEventListener('click', () => {
         url: `https://www.superheroapi.com/api.php/3525635500807579/${buscaHeroe.value}`,
         dataType: "json",
         success: function (heroe) {
-
-
-            ficha(heroe);
-            crearGrafico(heroe);
-
+            let letra1 = document.querySelector("#resultado");
+            let resultado = validar(buscaHeroe.value);
+            console.log(resultado);
+            if (resultado === true) {
+                if (buscaHeroe.value > 731 || buscaHeroe.value < 1) {
+                   
+                    letra1.setAttribute("class", "color-alert");
+                    document.querySelector("#resultado").innerHTML = "Debe buscar entre 1 y 731";
+                    limpiainput();
+                } else {
+                    letra1.setAttribute("class", "text-comic-4 text-centre");
+                    document.querySelector("#resultado").innerHTML = "¡Heroe Encontrado!";
+                    ficha(heroe);
+                    crearGrafico(heroe);
+                    limpiainput();
+                }
+            } else {
+                letra1.setAttribute("class", "color-alert text-centre");
+                document.querySelector("#resultado").innerHTML = "Debe ingresar solo valores numericos";
+                limpiainput();
+            };
         }
 
 
@@ -38,9 +60,9 @@ const ficha = (sHeroe) => {
     let base = sHeroe.work['base'];
     let afili = sHeroe.connections['group-affiliation'];
     let familia = sHeroe.connections['relatives'];
-    if (aliado === "bad"){
+    if (aliado === "bad") {
         estado = "Villano";
-    }else{
+    } else {
         estado = "Heroe";
     }
     if (nacimiento === "-") {
@@ -49,21 +71,21 @@ const ficha = (sHeroe) => {
     if (nombCompleto === "") {
         nombCompleto = sHeroe.name;
     }
-    if (ocupacion  === "-") {
-        ocupacion  = "Sin Ocupacion";
+    if (ocupacion === "-") {
+        ocupacion = "Sin Ocupacion";
     }
-    if (base  === "-") {
-        base  = "Sin base de operaciones";
+    if (base === "-") {
+        base = "Sin base de operaciones";
     }
-    if (familia ==="-"){
+    if (familia === "-") {
         familia = "Sin Familia Conocida"
     }
 
-    $('#seccionheroe').html(`<div class="container col-12 col-sm-10 text-center my-4 ">
-    <div class="row  pt-2"> <div class="card  col-12 col-sm-7 mb-2"><div class="row no-gutters">
-                <div  class="col-md-5 align-self-center bg-transparent"><img src="${sHeroe.image.url}" class="imgsecu mt-2" ><p class="text-center text-comic-2">${estado} N°${sHeroe.id}</p>
+    $('#seccionheroe').html(`<div class="container col-12 col-sm-11 text-center my-4 ">
+    <div class="row  pt-2"> <div class="card  col-12 col-sm-7 mb-2"><div class="row no-gutters border m-1">
+                <div  class="col-md-5 align-self-center "><img src="${sHeroe.image.url}" class="imgsecu mt-2" ><p class="text-center text-comic-2">${estado} N°${sHeroe.id}</p>
                 </div> <div class="col-md-7 "> <div id="ficha" class="card-body"> </div></div>
-                </div></div><div class="col-12 col-sm-5 mb-2 " style="height: 100%; width: 100%;"> <div id="graficoheroe" style="height: 100%; width: 100%;"></div>..  </div></div>`);
+                </div></div><div class="col-12 col-sm-5 mb-2 " style="height: 100%; width: 100%;"> <div id="graficoheroe" style="height: 100%; width: 100%;"></div><br>  </div></div>`);
     $('#ficha').html(`<h5 class=" text-comic-1 text-center">${sHeroe.name}<hr></h5>
     <dl class="row text-comic-3">
     <dt class="col-sm-6 text-left">Nombre Completo </dt><dd class="col-sm-6 text-left">${nombCompleto}</dd>
@@ -76,62 +98,62 @@ const ficha = (sHeroe) => {
     <dt class="col-sm-12"><hr></dt><dd class="col-sm-0"></dd> 
     <dt class="col-sm-0"><br></dt><dd class="col-sm-12">
         <dl class="row">
-            <dt class="col-sm-2 text-left">Sexo</dt>
-            <dd class="col-sm-4 text-left">${genero}</dd>
-            <dt class="col-sm-2 text-left">Raza</dt>
-            <dd class="col-sm-4 text-left">${raza}</dd>
-            <dt class="col-sm-2 text-left">Ojos</dt>
-            <dd class="col-sm-4 text-left">${ojos}</dd>
-            <dt class="col-sm-2 text-left">Pelo</dt>
-            <dd class="col-sm-4 text-left">${pelo}</dd>      
+            <dt class="col-sm-3 text-left">Sexo</dt>
+            <dd class="col-sm-3 text-left">${genero}</dd>
+            <dt class="col-sm-3 text-left">Raza</dt>
+            <dd class="col-sm-3 text-left">${raza}</dd>
+            <dt class="col-sm-3 text-left">Ojos</dt>
+            <dd class="col-sm-3 text-left">${ojos}</dd>
+            <dt class="col-sm-3 text-left">Pelo</dt>
+            <dd class="col-sm-3 text-left">${pelo}</dd>      
         </dl>
     </dd>
-    <dt class="col-sm-3 text-left">Altura</dt><dd class="col-sm-9 text-left">${altura}</dd>
-    <dt class="col-sm-3 text-left">Peso</dt><dd class="col-sm-9 text-left">${peso}</dd>
+    <dt class="col-sm-4 text-left">Altura</dt><dd class="col-sm-8 text-left">${altura}</dd>
+    <dt class="col-sm-4 text-left">Peso</dt><dd class="col-sm-8 text-left">${peso}</dd>
     <dt class="col-sm-12"><hr></dt><dd class="col-sm-0"></dd> 
-    <dt class="col-sm-3 text-left ">Ocupacion</dt><dd class="col-sm-9 text-justify">${ocupacion}</dd>
-    <dt class="col-sm-3 text-left">Base</dt><dd class="col-sm-9 text-justify">${base}</dd>
+    <dt class="col-sm-4 text-left ">Ocupacion</dt><dd class="col-sm-8 text-justify">${ocupacion}</dd>
+    <dt class="col-sm-4 text-left">Base</dt><dd class="col-sm-8 text-justify">${base}</dd>
     <dt class="col-sm-12"><hr></dt><dd class="col-sm-0"></dd> 
-    <dt class="col-sm-3 text-left ">Afiliacion</dt><dd class="col-sm-9 text-justify">${afili}</dd>
-    <dt class="col-sm-3 text-left">Familia</dt><dd class="col-sm-9 text-justify">${familia}</dd> 
+    <dt class="col-sm-4 text-left ">Afiliacion</dt><dd class="col-sm-8 text-justify">${afili}</dd>
+    <dt class="col-sm-4 text-left">Familia</dt><dd class="col-sm-8 text-justify">${familia}</dd> 
     </dl> `);
-    
-    
+
+
 }
 
 const crearGrafico = (graHeroe) => {
-    let nombre ="Estadisticas";
+    let nombre = "Estadisticas";
     let intel = graHeroe.powerstats['intelligence'];
     let estra = graHeroe.powerstats['strength'];
-    let velocidad =  graHeroe.powerstats['speed'];
+    let velocidad = graHeroe.powerstats['speed'];
     let durabilidad = graHeroe.powerstats['durability'];
     let poder = graHeroe.powerstats['power'];
     let combate = graHeroe.powerstats['combat'];
-    
 
-    if (intel  ==="null"){
+
+    if (intel === "null") {
         intel = 0;
     }
-    if (estra  ==="null"){
+    if (estra === "null") {
         estra = 0;
     }
-    if (velocidad  ==="null"){
+    if (velocidad === "null") {
         velocidad = 0;
     }
-    if (durabilidad  ==="null"){
+    if (durabilidad === "null") {
         durabilidad = 0;
     }
-    if (poder  ==="null"){
+    if (poder === "null") {
         poder = 0;
     }
-    if (combate  ==="null"){
+    if (combate === "null") {
         combate = 0;
     }
 
 
     let grafico = new CanvasJS.Chart("graficoheroe", {
         theme: "light2", // "light2", "dark1", "dark2"
-        animationEnabled: true, 		
+        animationEnabled: true,
         title: {
             text: nombre
         },
@@ -143,12 +165,22 @@ const crearGrafico = (graHeroe) => {
                     { label: "Estrategia", y: estra },
                     { label: "Velocidad", y: velocidad },
                     { label: "Dureza", y: durabilidad },
-                    { label: "Poder", y: poder},
+                    { label: "Poder", y: poder },
                     { label: "Poder", y: combate }
-                    
+
                 ]
             }
         ]
     });
     grafico.render();
 }
+
+function validar(opc) {
+    let estado = true;
+    let validacion = /^\d*$/;
+    if (validacion.test(opc) === false) {
+        estado = false;
+    };
+    return estado;
+}
+

@@ -6,16 +6,10 @@ body {
     background: linear-gradient(130deg,#0505da,#ec0505,#ffff00);
     background-size: 400% 300%;
     animation: BgGradient 5s ease infinite;
-    
-
   }
 
 .bg-barra{
     background-color: #2c2c2c;
-}
-
-.bg.heroe{
-    background-image: url(https://assets.turbologo.com/blog/es/2021/07/17031201/superhero-logos-958x575.png);
 }
 
 .img-prin{
@@ -56,6 +50,14 @@ body {
     font-weight: 300;
 }
 
+.color-alert{
+    font-family: 'Comic+Neue', sans-serif;
+    font-weight: 800;
+    font-size:x-large;
+    color: #fc0505;
+    background-color: #0421a0;
+}
+
 .color-fond-footer{
     background-color: #2c2c2c;
     color: #fff;
@@ -68,7 +70,7 @@ body {
     font-family: 'Comic+Neue', sans-serif;
     font-weight: 700;
     font-size:xx-large;
-    color: #2c2c2c;
+    color: #201e1e;
 }
 
 .text-comic-2{
@@ -85,6 +87,12 @@ body {
     color: #0808f0e5;
 }
 
+.text-comic-4{
+    font-family: 'Comic+Neue', sans-serif;
+    font-weight: 700;
+    font-size:xx-large;
+    color: #f3ebeb;
+}
 
 @media (max-width: 512px) {
    
