@@ -166,7 +166,7 @@ const crearGrafico = (graHeroe) => {
                     { label: "Velocidad", y: velocidad },
                     { label: "Dureza", y: durabilidad },
                     { label: "Poder", y: poder },
-                    { label: "Poder", y: combate }
+                    { label: "combate", y: combate }
 
                 ]
             }
